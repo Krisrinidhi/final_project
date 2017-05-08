@@ -41,7 +41,7 @@ if (isset($_POST['submit']))
 	$update_query =  "UPDATE todo SET ToDoItem = '$ToDoItem1',Description = '$Description1',DueDate = '$DueDate1',DueTime ='$DueTime1' WHERE Id = $edit_id" ;
 	mysqli_query($db,$update_query)
 	or die(mysqli_error());	
-	header("Location: home.php");
+	header("Location:home.php");
 }
 else
 {
