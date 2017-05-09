@@ -4,25 +4,36 @@
 <body>
 <head>
   <title>HOME</title>
-  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href=" ../style.css"/>
 </head>
 <div class="header">
     <h1>HOME PAGE</h1>
 </div>
-<h1><center>WELCOME TO YOUR PAGE</center></h1>
+<h1><center>WELCOME TO YOUR PAGE <?php
+session_start();
+
+$user_mail1=$_SESSION['email'];
+$db = mysqli_connect("sql2.njit.edu","sk2423","IR8VDFjJC","sk2423");
+$Name = "Select FirstName, LastName FROM user_info WHERE Email='$user_mail1' ";
+$NameDisplay = mysqli_query($db,$Name);
+$row1 = mysqli_fetch_assoc($NameDisplay);
+printf ("\n %s %s\n", $row1["FirstName"], $row1["LastName"]);
+mysqli_free_result($NameDisplay);
+?> </center></h1>
 <div>
-    <h4><center>TABLES<?php echo $_SESSION['firstname']; 
-?></center></h4></div>
+    <h4><center>TABLES</center></h4></div>
 </div>
 
 
 <p><h3><center>INCOMPLETE RECORDS</center></h3></p>
 <center><?php
-
 session_start();
+
+$user_mail=$_SESSION['email'];
 //connect to database
 $db = mysqli_connect("sql2.njit.edu","sk2423","IR8VDFjJC","sk2423");
-$Incomplete_query = "SELECT Id, Email, ToDoItem, Description , Status, DueDate , DueTime FROM todo WHERE  Status= 'incomplete'  ";
+$Incomplete_query = "SELECT Id, Email, ToDoItem, Description , Status, DueDate , DueTime FROM todo WHERE  Status= 'incomplete' AND Email='$user_mail' ";
+
 // AND Email='krisrinidhi@gmail.com' ";
 //Email= '$Email' and
 $result_count_1 = mysqli_query($db,$Incomplete_query);
@@ -53,9 +64,7 @@ $result_count_1 = mysqli_query($db,$Incomplete_query);
 			echo '<td><b><font color="#663300"><a href="checkoff.php?Id=' . $row['Id'] . '">checkoff</a></font></b></td>';
 			echo "</tr>";
 	  }
-	  echo "</table>";
-  
-  
+	  echo "</table>";  
 }
 ?> </center>
 <p><center><a href="insert.php">Insert new incomplete record</a><center></p>
@@ -77,7 +86,7 @@ $db = mysqli_connect("sql2.njit.edu","sk2423","IR8VDFjJC","sk2423");
     }
 
 
-$complete_query = "SELECT Id, Email, ToDoItem, Description , Status, DueDate , DueTime FROM todo WHERE  Status= 'Complete'  " ;
+$complete_query = "SELECT Id, Email, ToDoItem, Description , Status, DueDate , DueTime FROM todo WHERE  Status= 'Complete' AND Email='$user_mail' " ;
 
 //Email= '$Email' and AND Email='krisrinidhi@gmail.com' "
 $result_count = mysqli_query($db,$complete_query);
