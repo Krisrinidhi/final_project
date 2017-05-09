@@ -26,8 +26,8 @@ if(isset($_POST['register_btn']))
 				$sql="INSERT INTO user_info(FirstName,LastName,Email,Password,PhoneNumber,BirthDate,Gender) VALUES('$firstname','$lastname','$email','$password','$usrtel','$bday','$gender')";
 				mysqli_query($db,$sql);  
 				$_SESSION['message']="You are now logged in"; 
-				$_SESSION['firstname']=$firstname;
-				header("location: ./'controller'/'home.php'");  //redirect home page
+				$_SESSION['email']=$email;
+				header("location: ./controller/home.php");  //redirect home page
 			}
 			else
 			{
@@ -46,12 +46,12 @@ if(isset($_POST['register_btn']))
 <!DOCTYPE html>
 <html>
 <head>
-  <title>REGISTER</title>
+  <title>Register , login and logout user php mysql</title>
   <link rel="stylesheet" type="text/css" href=" ./view/style.css"/>
 </head>
 <body>
 <div class="header">
-    <h1>SIGN UP</h1>
+    <h1>Register, login and logout user php mysql</h1>
 </div>
 <?php
     if(isset($_SESSION['message']))
