@@ -2,10 +2,6 @@
 function valid($TodoItem, $Description , $DueDate, $DueTime, $error)
 {
 ?>
-<?php
-function valid($TodoItem, $Description , $DueDate, $DueTime, $error)
-{
-?>
 <!DOCTYPE HTML >
 <html>
 <head>
@@ -66,6 +62,7 @@ echo '<div style="padding:4px; border:1px solid red; color:red;">'.$error.'</div
 }
 
 session_start();
+$user_mail=$_SESSION['email'];
 //connect to database
 $db = mysqli_connect("sql2.njit.edu","sk2423","IR8VDFjJC","sk2423");
 
@@ -87,10 +84,10 @@ valid($ToDoItem, $Description, $DueDate, $DueTime ,$error);
 else
 {
 
-$result=mysqli_query($db,"INSERT INTO todo(ToDoItem,Description,DueDate,DueTime,Status) VALUES ('$ToDoItem','$Description','$DueDate','$DueTime', '$status')")
+$result=mysqli_query($db,"INSERT INTO todo(Email, ToDoItem,Description,DueDate,DueTime,Status) VALUES ('$user_mail','$ToDoItem','$Description','$DueDate','$DueTime', '$status')")
 or die(mysqli_error());
 
-header("Location: home.php");
+header("Location:home.php");
 }
 }
 else
@@ -98,3 +95,4 @@ else
 valid('','','','');
 }
 ?>
+
