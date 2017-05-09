@@ -2,7 +2,7 @@
 session_start();
 //connect to database
 $db = mysqli_connect("sql2.njit.edu","sk2423","IR8VDFjJC","sk2423");
-if(isset($_POST['login_btn']))
+if(isset($_POST['submit']))
 {
     $email=mysqli_real_escape_string($db,$_POST['email']);
     $sql_email="SELECT Email FROM user_info WHERE Email='$email'" ;
@@ -66,7 +66,7 @@ if(isset($_POST['login_btn']))
      </tr>
       <tr>
            <td></td>
-           <td><center><input type="submit" name="login_btn" class="Log In"></center></td>
+           <td><center><input type="submit" name="submit" class="Log In"></center></td>
      </tr>
   
 </table>
