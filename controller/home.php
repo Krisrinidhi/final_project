@@ -4,7 +4,7 @@
 <body>
 <head>
   <title>HOME</title>
-  <link rel="stylesheet" type="text/css" href=" ../style.css"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <div class="header">
     <h1>HOME PAGE</h1>
